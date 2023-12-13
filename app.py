@@ -22,7 +22,7 @@ def index():
 
     menu = f'''
     Go <a href="{url_for('exchange')}">here</a> to exchange money<br>
-    To exchange 50 CHF go <a href="{url_for('cantor', currency='CHF', amount=50)}">here</a>
+    To exchange 50 CHF go <a href="{url_for('cantor', currency='CHF', amount=50, _external=True)}">here</a>
     '''
     return f'<h1>Hello World!</h1><br>{menu}'
 
