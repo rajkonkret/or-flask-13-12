@@ -8,6 +8,7 @@ def index():
     return "<h1>Hello World!!<h1>"
 
 
+# dynamiczny routing
 @app.route('/cantor/<currency>/<int:amount>')
 def cantor(currency, amount):
     message = f"<h1>You selected {currency} and amount {amount}<h1>"
