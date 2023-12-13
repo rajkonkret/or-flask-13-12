@@ -1,11 +1,24 @@
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def index():
-    return "<h1>Hello World!!<h1>"
+    print(request.query_string)
+
+    color = 'black'
+    if 'color' in request.args:
+        color = request.args['color']
+
+    style = 'normal'
+    if 'style' in request.args:
+        style = request.args['style']
+
+    for p in request.args:
+        print(p, request.args[p])
+
+    return f'<h1 style="color: {color};font-style: {style};">Hello World!!<h1>'
 
 
 # dynamiczny routing
