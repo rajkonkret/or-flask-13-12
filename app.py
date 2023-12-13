@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, request, url_for, redirect
 
 app = Flask(__name__)
@@ -22,8 +24,10 @@ def index():
 
     menu = f'''
     Go <a href="{url_for('exchange')}">here</a> to exchange money<br>
-    To exchange 50 CHF go <a href="{url_for('cantor', currency='CHF', amount=50, _external=True)}">here</a>
-    <img src="{ url_for('static', filename='dollar.png')}">
+    To exchange 50 CHF go <a href="{url_for('cantor', currency='CHF', amount=50, _external=True)}">here</a><br>
+    <img src="{url_for('static', filename='currencies/euro.png')}"><br>
+    {url_for('static',filename='currencies/euro.png')}<br>
+    {os.path.join(app.static_folder, 'currencies/euro.png')}
     '''
     return f'<h1>Hello World!</h1><br>{menu}'
 
