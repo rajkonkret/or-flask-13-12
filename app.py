@@ -28,17 +28,45 @@ def cantor(currency, amount):
     return message
 
 
-@app.route('/exchange')
+@app.route('/exchange', methods=['GET', 'POST'])
 def exchange():
-    body = '''
-    <form id="exchange_form" action="/exchange_process" method="POST">
-        <label for="currency">Currency</label>
-        <input type="text" id="currency" name="currency" value="EUR"><br>
-        <label for="amount">Amount</label>
-        <input type="text" id="amount" name="amount" value="100"><br>
-        <input type="submit" value="Send">
-    </form>
-    '''
+    if request.method == 'GET':
+        body = '''
+        <form id="exchange_form" action="/exchange" method="POST">
+            <label for="currency">Currency</label>
+            <input type="text" id="currency" name="currency" value="EUR"><br>
+            <label for="amount">Amount</label>
+            <input type="text" id="amount" name="amount" value="100"><br>
+            <input type="submit" value="Send">
+        </form>
+        '''
+        return body
+    else:
+        currency = 'EUR'
+        if 'currency' in request.form:
+            currency = request.form['currency']
+
+        amount = 100
+        if 'amount' in request.form:
+            amount = request.form['amount']
+
+        body = f"You want to exchange {amount} {currency}"
+
+        return body
+
+
+@app.route('/exchange_process', methods=['POST'])
+def exchange_process():
+    currency = 'EUR'
+    if 'currency' in request.form:
+        currency = request.form['currency']
+
+    amount = 100
+    if 'amount' in request.form:
+        amount = request.form['amount']
+
+    body = f"You want to exchange {amount} {currency}"
+
     return body
 
 
