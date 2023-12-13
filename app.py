@@ -1,24 +1,30 @@
-from flask import Flask, request
+from flask import Flask, request, url_for
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def index():
-    print(request.query_string)
+    # print(request.query_string)
+    #
+    # color = 'black'
+    # if 'color' in request.args:
+    #     color = request.args['color']
+    #
+    # style = 'normal'
+    # if 'style' in request.args:
+    #     style = request.args['style']
+    #
+    # for p in request.args:
+    #     print(p, request.args[p])
+    #
+    # return f'<h1 style="color: {color};font-style: {style};">Hello World!!<h1>'
 
-    color = 'black'
-    if 'color' in request.args:
-        color = request.args['color']
-
-    style = 'normal'
-    if 'style' in request.args:
-        style = request.args['style']
-
-    for p in request.args:
-        print(p, request.args[p])
-
-    return f'<h1 style="color: {color};font-style: {style};">Hello World!!<h1>'
+    menu = f'''
+    Go <a href="{url_for('exchange')}">here</a> to exchange money<br>
+    To exchange 50 CHF go <a href="{url_for('cantor', currency='CHF', amount=50)}">here</a>
+    '''
+    return f'<h1>Hello World!</h1><br>{menu}'
 
 
 # dynamiczny routing
