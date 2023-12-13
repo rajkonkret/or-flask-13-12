@@ -28,6 +28,20 @@ def cantor(currency, amount):
     return message
 
 
+@app.route('/exchange')
+def exchange():
+    body = '''
+    <form id="exchange_form" action="/exchange_process" method="POST">
+        <label for="currency">Currency</label>
+        <input type="text" id="currency" name="currency" value="EUR"><br>
+        <label for="amount">Amount</label>
+        <input type="text" id="amount" name="amount" value="100"><br>
+        <input type="submit" value="Send">
+    </form>
+    '''
+    return body
+
+
 @app.route('/about')
 def about():
     a = 10
