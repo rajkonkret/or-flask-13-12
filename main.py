@@ -15,3 +15,4 @@ if __name__ == '__main__':
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
 #  pip3 install Flask==3.0.0
+# ctrl alt l
