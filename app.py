@@ -1,4 +1,4 @@
-from flask import Flask, request, url_for
+from flask import Flask, request, url_for, redirect
 
 app = Flask(__name__)
 
@@ -37,8 +37,8 @@ def cantor(currency, amount):
 @app.route('/exchange', methods=['GET', 'POST'])
 def exchange():
     if request.method == 'GET':
-        body = '''
-        <form id="exchange_form" action="/exchange" method="POST">
+        body = f'''
+        <form id="exchange_form" action="{url_for('exchange')}" method="POST">
             <label for="currency">Currency</label>
             <input type="text" id="currency" name="currency" value="EUR"><br>
             <label for="amount">Amount</label>
@@ -58,7 +58,9 @@ def exchange():
 
         body = f"You want to exchange {amount} {currency}"
 
-        return body
+        # return body
+        # return redirect(url_for('index'))
+        return redirect(url_for('cantor', currency=currency, amount=amount))
 
 
 @app.route('/exchange_process', methods=['POST'])
